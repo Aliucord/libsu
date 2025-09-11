@@ -53,15 +53,6 @@ val javadocJar by tasks.registering(Jar::class) {
     from(javadoc.destinationDir)
 }
 
-publishing {
-    publications {
-        create<MavenPublication>("maven") {
-            artifact(javadocJar.get())
-            groupId = "com.github.topjohnwu"
-            artifactId = "docs"
-        }
-    }
-}
 
 fun Project.android(configuration: BaseExtension.() -> Unit) =
         extensions.getByName<BaseExtension>("android").configuration()
@@ -120,6 +111,16 @@ subprojects {
                         }
                         groupId = "com.github.topjohnwu.libsu"
                         artifactId = project.name
+                        version = "6.0.0"
+                    }
+                }
+                repositories {
+                    maven {
+                        credentials {
+                            this.username = System.getenv("MAVEN_USERNAME")
+                            this.password = System.getenv("MAVEN_PASSWORD")
+                        }
+                        setUrl("https://maven.aliucord.com/snapshots")
                     }
                 }
             }
