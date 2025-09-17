@@ -109,7 +109,7 @@ subprojects {
                         afterEvaluate {
                             from(components["release"])
                         }
-                        groupId = "com.github.topjohnwu.libsu"
+                        groupId = "com.aliucord.libsu"
                         artifactId = project.name
                         version = "6.0.0"
                     }
@@ -117,10 +117,10 @@ subprojects {
                 repositories {
                     maven {
                         credentials {
-                            this.username = System.getenv("MAVEN_USERNAME")
-                            this.password = System.getenv("MAVEN_PASSWORD")
+                            this.username = System.getenv("MAVEN_RELEASE_USERNAME")
+                            this.password = System.getenv("MAVEN_RELEASE_PASSWORD")
                         }
-                        setUrl("https://maven.aliucord.com/snapshots")
+                        setUrl("https://maven.aliucord.com/releases")
                     }
                 }
             }
